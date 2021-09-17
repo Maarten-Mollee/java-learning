@@ -1,27 +1,45 @@
-let num1 = 8
-let num2 = 2
-document.getElementById("num1-el").textContent = num1
-document.getElementById("num2-el").textContent = num2
+let firstCard = 10
+let secondCard = 4
+let cards = [firstCard, secondCard]
+let sum = firstCard + secondCard
+let hasBlackJack = false
+let isAlive = true
+let message = ""
 
-let sumEl = document.getElementById("sum-el")
-let sum = 0
+let messageEl = document.getElementById("message-el")
+let sumEl = document.querySelector("#sum-el")
+let cardsEl = document.querySelector("#cards-el")
 
-function add() {
-    sum = num1 + num2
-    sumEl.textContent = "Sum: " + sum
+function startGame () {
+    renderGame()
 }
 
-function sub() {
-    sum = num1 - num2
+function renderGame () {
+    if (sum <= 20) {
+        message = "do you want to draw a new card?"
+    } else if (sum === 21) {
+        message = "you've got blackjack!"
+        hasBlackJack = true
+    } else {
+        message = "you're out of the game!"
+        isAlive = false
+    }
+    messageEl.textContent = message
     sumEl.textContent = "Sum: " + sum
+    cardsEl.textContent = "Cards: " + cards[0] + " " + cards[1]
 }
 
-function div() {
-    sum = num1 / num2
-    sumEl.textContent = "Sum: " + sum
+function newCard () {
+    let newCard = 8
+    cards.push(newCard)
+    sum += newCard
+    
+    renderGame ()
 }
 
-function mul() {
-    sum = num1 * num2
-    sumEl.textContent = "Sum: " + sum
+let cardz = [7, 3, 9]
+
+for (let i = 0; i < cardz.length; i++) {
+    console.log(cardz[i])
 }
+
